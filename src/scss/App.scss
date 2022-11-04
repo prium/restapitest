@@ -1,0 +1,54 @@
+$primary-color: hsl(180deg 88% 29%);
+
+.App-header {
+  background-color: $primary-color;
+  color: white;
+  padding: 2.5rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+
+// Taking shortcut by directly styling the html elements
+
+.transaction-table {
+  margin: 2rem;
+  table{
+    tr > td, tr > th {
+      padding: 1.2rem 3rem;
+    }
+  }
+}
+
+.transaction-table-header > th {
+  background-color: white;
+  color: $primary-color;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.transaction-table-body {
+  background: rgb(247, 246, 244);
+  background: linear-gradient(
+    180deg,
+    rgba(247, 246, 244, 1) 0%,
+    rgba(255, 255, 255, 1) 20%
+  );
+
+  tr > td{
+    color: gray;
+    font-weight: 500;
+  }
+  tr > td:nth-child(2n){
+    font-size: 1rem;
+    font-weight: bold;
+    color: hsl(230deg 5% 25%);
+  }
+
+  tr:hover > td{
+    color: $primary-color;
+  }
+}
+
+
