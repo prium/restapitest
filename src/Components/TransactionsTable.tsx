@@ -6,10 +6,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
+import moment from "moment";
+
 import { useAPI } from "../hooks/useAPI";
-import { TransactionJSONType, TransactionType } from "../Types/TransactionType";
+import { TransactionType } from "../Types/TransactionType";
 import { useEffect, useState } from "react";
-import { reduceToSum, toCurrency } from "../utils/toCurrency";
+import { toCurrency } from "../utils/toCurrency";
+import { reduceToSum } from "../utils/reduceToSum";
 
 const tableHeadData = ["Date", "Company", "Account"];
 
@@ -18,16 +21,10 @@ export const TransactionsTable = () => {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [transactions, setTransactions] = useState([] as TransactionType[]);
 
-  const [count, setCount] = useState(1);
-
   const { status, data, error } = useAPI({
     page: page,
     dataLoaded: dataLoaded,
-  }) as {
-    status: string;
-    data: TransactionJSONType;
-    error: Error;
-  };
+  });
 
   useEffect(() => {
     if (!data || dataLoaded) return;
@@ -51,16 +48,18 @@ export const TransactionsTable = () => {
               })}
 
               <TableCell align="right">
-                {!dataLoaded ? "Calculating..." : reduceToSum(transactions)}
+                {!dataLoaded ? "Calculating..." : toCurrency(reduceToSum(transactions))}
               </TableCell>
             </TableRow>
           </TableHead>
 
-          <TableBody className="transaction-table-body">
+          <TableBody className="transaction-table-body" data-testid="transactions-body">
             {transactions.map((item, i) => {
               return (
                 <TableRow key={i}>
-                  <TableCell>{item.Date}</TableCell>
+                  <TableCell>
+                    {moment(item.Date).format("MMM Do, YYYY")}
+                  </TableCell>
                   <TableCell>{item.Company}</TableCell>
                   <TableCell>{item.Ledger}</TableCell>
                   <TableCell align="right">{toCurrency(item.Amount)}</TableCell>
@@ -74,7 +73,7 @@ export const TransactionsTable = () => {
                   `Loading: Page ${page}`
                 ) : status === "error" ? (
                   <span style={{ color: "red" }}>
-                    Error: {error?.message} <br />
+                    Error! {error instanceof Error && error.message}
                   </span>
                 ) : (
                   <span style={{ color: "green" }}>

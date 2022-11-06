@@ -1,4 +1,3 @@
-import { TransactionType } from "../Types/TransactionType";
 export const toCurrency = (amount: string | number) => {
   let converted;
   typeof amount == "string" && (amount = Number(amount));
@@ -9,12 +8,3 @@ export const toCurrency = (amount: string | number) => {
   });
 };
 
-export const reduceToSum = (transactions: TransactionType[]) => {
-  return toCurrency(
-    transactions
-      .map((item) => {
-        return Number(item.Amount);
-      })
-      .reduce((a, b) => a + b)
-  );
-};
