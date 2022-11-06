@@ -9,13 +9,13 @@ $primary-color: hsl(180deg 88% 29%);
   font-size: 1.2rem;
 }
 
-
 // Taking shortcut by directly styling the html elements
 
 .transaction-table {
   margin: 2rem;
-  table{
-    tr > td, tr > th {
+  table {
+    tr > td,
+    tr > th {
       padding: 1.2rem 3rem;
     }
   }
@@ -26,6 +26,12 @@ $primary-color: hsl(180deg 88% 29%);
   color: $primary-color;
   font-size: 1.2rem;
   font-weight: bold;
+  &:first-child {
+    width: 120px;
+  }
+  // &:nth-child(2) {
+  //   width: 100px;
+  // }
 }
 
 .transaction-table-body {
@@ -36,19 +42,25 @@ $primary-color: hsl(180deg 88% 29%);
     rgba(255, 255, 255, 1) 20%
   );
 
-  tr > td{
+  tr > td {
     color: gray;
     font-weight: 500;
-  }
-  tr > td:nth-child(2n){
-    font-size: 1rem;
-    font-weight: bold;
-    color: hsl(230deg 5% 25%);
+
+    &:nth-child(2n) {
+      font-size: 1rem;
+      font-weight: bold;
+      color: hsl(230deg 5% 25%);
+    }
+
+    &:nth-child(2), &:nth-child(3) {
+      max-width: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
-  tr:hover > td{
+  tr:hover > td {
     color: $primary-color;
   }
 }
-
-

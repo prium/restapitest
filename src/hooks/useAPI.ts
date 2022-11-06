@@ -15,7 +15,7 @@ export const useAPI = ({
   return useQuery({
     queryKey: ["transactions", page],
     queryFn: async () => {
-      await new Promise((r) => setTimeout(r, 2000)); //Simulating slow API calls
+      // await new Promise((r) => setTimeout(r, 2000)); //Uncomment to simulate slow API calls
       const { data } = await axios.get<TransactionJSONType>(API_URL);
 
       return data;

@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import { useAPI } from "../hooks/useAPI";
 import { TransactionsTable } from "../Components/TransactionsTable";
 
-import moment from "moment";
 import { toCurrency } from "../utils/toCurrency";
 import { reduceToSum } from "../utils/reduceToSum";
 
@@ -128,7 +127,7 @@ describe("<TransactionsTable />", () => {
     // Rendering with Moc data
     const { rerender, getByText, queryByText } = render(<TransactionsTable />);
 
-	// All the rows are rendered for page 1
+    // All the rows are rendered for page 1
     // Todo: Verify each row is containing the exact data it suppose to contain
     expect(
       (screen.queryByTestId("transactions-body") as HTMLElement)

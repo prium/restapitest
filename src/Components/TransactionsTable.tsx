@@ -40,7 +40,13 @@ export const TransactionsTable = () => {
   return (
     <div className="transaction-table">
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="Transaction table">
+        <Table sx={{ minWidth: 1320 }} aria-label="Transaction table">
+          <colgroup>
+            <col width="160px" />
+            <col width="630px" />
+            <col style={{minWidth: "400px"}} />
+            <col width="200px" />
+          </colgroup>
           <TableHead>
             <TableRow className="transaction-table-header">
               {tableHeadData.map((item, i) => {
@@ -48,12 +54,17 @@ export const TransactionsTable = () => {
               })}
 
               <TableCell align="right">
-                {!dataLoaded ? "Calculating..." : toCurrency(reduceToSum(transactions))}
+                {!dataLoaded
+                  ? "Calculating..."
+                  : toCurrency(reduceToSum(transactions))}
               </TableCell>
             </TableRow>
           </TableHead>
 
-          <TableBody className="transaction-table-body" data-testid="transactions-body">
+          <TableBody
+            className="transaction-table-body"
+            data-testid="transactions-body"
+          >
             {transactions.map((item, i) => {
               return (
                 <TableRow key={i}>
