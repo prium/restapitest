@@ -1,3 +1,19 @@
+# Assumptions
+- There would be a limited (small) number of "pages" in the API and a reasonably small amount of transaction data per page.
+- "ledger name" in the API implies "Account" on the UI
+
+# Limitations
+- A massive transaction data set would result in a long loading time.
+- Could cause memory overflow with a vast dataset.
+
+
+# Todo
+- [Virtualized table](https://mui.com/material-ui/react-table/#virtualized-table)
+- Pagination
+- Unit test optimization
+- E2E test / Integration test
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
